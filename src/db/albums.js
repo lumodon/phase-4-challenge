@@ -1,4 +1,3 @@
-const client = require('./pgp')
 const {_query} = require('./helpers')
 
 function getAlbums() {
