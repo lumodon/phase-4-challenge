@@ -4,9 +4,9 @@ VALUES
   ('Malibu', 'Anderson .Paak'),
   ('A Seat at the Table', 'Solange Knowles'),
   ('Melodrama', 'Lorde'),
-  ('In Rainbows', 'Radiohead')
+  ('In Rainbows', 'Radiohead'),
   ('True Colors', 'Cyndi Lauper'),
-  ('Brown Dirt Cowboy', 'Elton John')
+  ('Brown Dirt Cowboy', 'Elton John'), 
   ('Away From The Sun', 'Three Doors Down'),
   ('Night of the Opera', 'Queen'),
   ('Thriller', 'Michael Jackson'),

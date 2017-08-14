@@ -2,6 +2,9 @@ const path = require('path')
 const express = require('express')
 const bodyParser = require('body-parser')
 const db = require('./db')
+require('dotenv', {
+  path: path.join(__dirname, 'config/.env')
+})
 
 const port = process.env.PORT || 3000
 
