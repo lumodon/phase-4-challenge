@@ -1,10 +1,10 @@
 const path = require('path')
-const express = require('express')
-const bodyParser = require('body-parser')
-const db = require('./db')
-require('dotenv', {
+require('dotenv').config({
   path: path.join(__dirname, 'config/.env')
 })
+const express = require('express')
+const bodyParser = require('body-parser')
+const albums = require('./models/albums')
 
 const port = process.env.PORT || 3000
 
@@ -18,26 +18,25 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({extended: false}))
 
 app.get('/', (req, res) => {
-  db.getAlbums((error, albums) => {
-    if (error) {
-      res.status(500).render('error', {error})
-    } else {
+  albums.getAlbums()
+    .then( albums => {
       res.render('index', {albums})
-    }
-  })
+    })
+    .catch( error => {
+      res.status(500).render('error', {error})
+    })
 })
 
 app.get('/albums/:albumID', (req, res) => {
   const albumID = req.params.albumID
 
-  db.getAlbumsByID(albumID, (error, albums) => {
-    if (error) {
-      res.status(500).render('error', {error})
-    } else {
-      const album = albums[0]
+  albums.getAlbumsByID(albumID)
+    .then( album => {
       res.render('album', {album})
-    }
-  })
+    })
+    .catch( error => {
+      res.status(500).render('error', {error})
+    })
 })
 
 app.use((req, res) => {
