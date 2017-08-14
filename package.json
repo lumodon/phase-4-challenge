@@ -14,11 +14,12 @@
     "db:create": "createdb vinyl",
     "db:drop": "dropdb vinyl",
     "db:schema": "psql -d vinyl < src/db/schemas/schema.sql",
-    "db:seed": "psql -d vinyl < src/db/schemas/albums.sql",
-    "test": "./node_modules/.bin/eslint src"
+    "db:seed": "psql -d vinyl < src/db/schemas/albums.sql && psql -d vinyl < src/db/schemas/users.sql",
+    "test": "node tests/tests.js"
   },
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
     "dotenv": "^4.0.0",
     "ejs": "^2.5.6",

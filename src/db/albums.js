@@ -1,11 +1,10 @@
-const client = require('./pgp')
 const {_query} = require('./helpers')
 
 function getAlbums() {
   return _query('SELECT * FROM albums', [], 'any')
 }
 
-function getAlbumsByID(albumID) {
+function getAlbumByID(albumID) {
   return _query(`
     SELECT * FROM albums
     WHERE id = $1
@@ -14,5 +13,5 @@ function getAlbumsByID(albumID) {
 
 module.exports = {
   getAlbums,
-  getAlbumsByID,
+  getAlbumByID,
 }

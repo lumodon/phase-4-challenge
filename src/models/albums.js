@@ -1,14 +1,14 @@
-const albums = require('../db/albums')
+const Albums = require('../db/albums')
 
 function getAlbums() {
-  return albums.getAlbums()
+  return Albums.getAlbums()
 }
 
-function getAlbumsByID(albumID) {
-  return albums.getAlbumsByID(albumID)
+function getAlbumByID(albumID) {
+  return Albums.getAlbumByID(albumID)
 }
 
 module.exports = {
   getAlbums,
-  getAlbumsByID,
+  getAlbumByID,
 }

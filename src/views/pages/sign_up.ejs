@@ -1,0 +1,28 @@
+<% include ../partials/header.ejs %>
+
+<form action="/sign-up" method="POST">
+  <ul>
+    <li>
+      <p>Email</p>
+      <input type="email" name="email" placeholder="user@email.com" value=<%= autofill.email %>>
+    </li>
+    <li>
+      <p>First Name</p>
+      <input type="text" name="firstName" placeholder="Alex">
+    </li>
+    <li>
+      <p>Last Name</p>
+      <input type="text" name="lastName" placeholder="Baldwin">
+    </li>
+    <li>
+      <p>Password</p>
+      <input type="password" name="password" placeholder="********" value=<%= autofill.password %>>
+    </li>
+    <li>
+      <p></p>
+      <input type="submit">
+    </li>
+  </ul>
+</form>
+
+<% include ../partials/footer.ejs %>
