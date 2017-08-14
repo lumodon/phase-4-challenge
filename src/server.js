@@ -4,7 +4,7 @@ require('dotenv').config({
 })
 const express = require('express')
 const bodyParser = require('body-parser')
-const db = require('./db/pgp')
+const albums = require('./models/albums')
 
 const port = process.env.PORT || 3000
 
@@ -18,7 +18,7 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({extended: false}))
 
 app.get('/', (req, res) => {
-  db.getAlbums()
+  albums.getAlbums()
     .then( albums => {
       res.render('index', {albums})
     })
@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
 app.get('/albums/:albumID', (req, res) => {
   const albumID = req.params.albumID
 
-  db.getAlbumsByID(albumID)
+  albums.getAlbumsByID(albumID)
     .then( album => {
       res.render('album', {album})
     })
