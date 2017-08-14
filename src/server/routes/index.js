@@ -1,30 +1,34 @@
 const router = require('express').Router()
 const Albums = require('../../models/albums')
+const Users = require('../../models/users')
+const setLocals = require('../../helpers/setLocals')
+
+router.get('/sign-out', (req, res) => {
+  req.session = null
+  res.redirect('/')
+})
 
 router.use('/', (req, res, next) => {
-  // Sets default locals for ejs views to keep ejs logicless (logic-minimal)
-  res.locals = {
-    navbutton1: {
-      text: 'Sign Up',
-      link: '/sign-up',
-    },
-    navbutton2: {
-      text: 'Sign In',
-      link: '/sign-in',
-    },
-    autofill: process.env.NODE_ENV === 'development'
-      ? {
-        email: 'ai@gmail.com',
-        password: 'foo',
-      }
-      : {
-        email: '',
-        password: ''
-      },
-    title: '',
+  if(req.session.user) {
+    console.log('req.session.user -> ', req.session.user)
+    Users.getUserByID(req.session.user)
+      .then((user) => {
+        setLocals(res, next, {
+          navbutton1: {
+            text: 'Profile',
+            link: `/users/${req.session.user}`
+          },
+          navbutton2: {
+            text: 'Sign Out',
+            link: '/sign-out'
+          }
+        })
+      })
+  } else {
+    setLocals(res, next)
+    // Should I set the default here
+    // or leave it IN the helper function?
   }
-
-  next()
 })
 
 router.get('/', (req, res) => {

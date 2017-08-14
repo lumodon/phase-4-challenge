@@ -4,11 +4,17 @@ require('dotenv').config({
 })
 const express = require('express')
 const bodyParser = require('body-parser')
+const cookieSession = require('cookie-session')
 require('ejs')
 
 const port = process.env.PORT || 3000
-
 const app = express()
+
+app.use(cookieSession({
+  name: 'session',
+  keys: [process.env.SESSION_SECRET_1, process.env.SESSION_SECRET_2],
+  maxAge: (24 * 60 * 60 * 1000) // 1 day === 24 hours
+}))
 
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views/pages'))

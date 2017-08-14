@@ -9,7 +9,7 @@ router.route('/sign-in')
     Users.verifyPasswordWithEmail(req.body.email, req.body.password)
       .then((user) => {
         if (user) {
-          res.cookie.user = user
+          req.session.user = user.id
           res.redirect(`users/${user.id}`)
         } else {
           res.redirect('/sign-in') // TODO: add error message explaining why
