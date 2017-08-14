@@ -20,6 +20,18 @@ function createUser(email, firstName, lastName, password) {
     )
 }
 
+function verifyPasswordWithEmail(email, plainPassword) {
+  return getUserByEmail(email)
+    .then(user =>
+      bcrypt.compare(plainPassword, user.password)
+        .then((doesMatch) => { // eslint-disable-line arrow-body-style
+          return doesMatch ? user : false
+          // Had to disable eslint above because other way results in
+          // linting error: No ambigious arrow
+        }),
+    )
+}
+
 function deleteUserByEmail(email) {
   return Users.deleteUserByEmail(email)
 }
@@ -30,4 +42,5 @@ module.exports = {
   getUserByEmail,
   createUser,
   deleteUserByEmail,
+  verifyPasswordWithEmail,
 }

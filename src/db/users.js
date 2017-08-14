@@ -15,7 +15,7 @@ function getUserByEmail(email) {
   return _query(`
     SELECT * FROM users
     WHERE lower(email) = $1
-  `, [email.toLowerCase()], 'oneOrNone')
+  `, [email.toLowerCase()], 'one')
 }
 
 function createUser(email, firstName, lastName, password) {
