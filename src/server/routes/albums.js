@@ -4,7 +4,7 @@ const Albums = require('../../models/albums')
 router.get('/:albumID', (req, res) => {
   const albumID = req.params.albumID
 
-  Albums.getAlbumsByID(albumID)
+  Albums.getAlbumByID(albumID)
     .then((album) => {
       res.render('album', {album})
     })
