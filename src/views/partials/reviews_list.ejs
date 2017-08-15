@@ -1,7 +1,7 @@
 <% if (locals.reviews && locals.reviews.list) { %>
   <% locals.reviews.list.forEach( review => { %>
     <div class="review" data-reviewid="<%= review.review_id %>">
-      <p><%=review.review_album_title%></p>
+      <a href="/albums/<%= review.review_album_id %>"><%=review.review_album_title%></a>
       <p><%=review.review_date%></p>
       <p><%=review.review_content%></p>
       <% if (review.review_is_deletable) { %>

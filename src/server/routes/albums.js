@@ -8,7 +8,7 @@ function isLoggedIn(req, res, next) {
     next()
   } else {
     req.session.flash = 'You must be logged in to do that.'
-    res.redirect('/')
+    res.redirect('back')
   }
 }
 
@@ -38,11 +38,12 @@ router.route('/:albumID/reviews/new')
   })
 
 router.get('/:albumID', (req, res) => {
+  const flash = handleFlash(req.session)
   const albumID = req.params.albumID
 
   Reviews.getAllByAlbumID(albumID, req.session.user)
     .then((reviews) => {
-      res.render('album', {reviews, album: reviews.album})
+      res.render('album', {reviews, album: reviews.album, flash})
     })
     .catch((error) => {
       res.status(500).render('error', {error})
