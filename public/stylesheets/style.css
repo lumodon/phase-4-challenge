@@ -8,6 +8,10 @@ html, body {
   color: red;
 }
 
+.success {
+  color: greenyellow;
+}
+
 .review {
   margin-bottom: 40px;
 }

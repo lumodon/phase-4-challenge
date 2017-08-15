@@ -25,7 +25,6 @@ router.route('/:albumID/reviews/new')
     if (reviewContent && reviewContent.length > 0) {
       Reviews.createReview(req.session.user, req.params.albumID, reviewContent)
         .then((creationConfirmation) => {
-          console.log('creationConfirmation --> ', creationConfirmation)
           if (creationConfirmation) {
             res.redirect(`/albums/${req.params.albumID}`)
           } else {
