@@ -13,23 +13,24 @@ function getUserByEmail(email) {
   return Users.getUserByEmail(email)
 }
 
-function createUser(email, firstName, lastName, password) {
+function createUser(email, name, password) {
   return bcrypt.hash(password, 10)
     .then(encryptedPassword =>
-      Users.createUser(email, firstName, lastName, encryptedPassword),
+      Users.createUser(email, name, encryptedPassword),
     )
 }
 
 function verifyPasswordWithEmail(email, plainPassword) {
   return getUserByEmail(email)
-    .then(user =>
-      bcrypt.compare(plainPassword, user.password)
+    .then((user) => {
+      if (!user) return false
+      return bcrypt.compare(plainPassword, user.password)
         .then((doesMatch) => { // eslint-disable-line arrow-body-style
           return doesMatch ? user : false
           // Had to disable eslint above because other way results in
           // linting error: No ambigious arrow
-        }),
-    )
+        })
+    })
 }
 
 function deleteUserByEmail(email) {

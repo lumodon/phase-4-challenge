@@ -1,4 +1,4 @@
-const {_query} = require('./helpers')
+const {_query} = require('../helpers/query')
 
 function getUsers() {
   return _query('SELECT * FROM users', [], 'any')
@@ -15,17 +15,17 @@ function getUserByEmail(email) {
   return _query(`
     SELECT * FROM users
     WHERE lower(email) = $1
-  `, [email.toLowerCase()], 'one')
+  `, [email.toLowerCase()], 'oneOrNone')
 }
 
-function createUser(email, firstName, lastName, password) {
+function createUser(email, name, password) {
   return _query(`
     INSERT INTO users
-      (email, first_name, last_name, password)
+      (email, name, password)
     VALUES
-      ($1, $2, $3, $4)
+      ($1, $2, $3)
     RETURNING *
-  `, [email.toLowerCase(), firstName, lastName, password], 'oneOrNone')
+  `, [email.toLowerCase(), name, password], 'oneOrNone')
 }
 
 function deleteUserByEmail(email) {
