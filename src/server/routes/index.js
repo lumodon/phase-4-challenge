@@ -51,5 +51,6 @@ router.get('/', (req, res) => {
 router.use('/', require('./auth'))
 router.use('/users', require('./users'))
 router.use('/albums', require('./albums'))
+router.use('/reviews', require('./reviews'))
 
 module.exports = router
