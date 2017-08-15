@@ -3,8 +3,9 @@
   <h1><%= locals.album.title %></h1>
   <em>by <%= locals.album.artist %></em>
 
+  <a class="btn" href="/albums/<%= locals.album.id %>/reviews/new">New Review</a>
+
   <h2>Reviews</h2>
   <% include ../partials/reviews_list.ejs %>
-  <!-- TODO: implement album reviews -->
 
 <% include ../partials/footer.ejs %>

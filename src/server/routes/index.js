@@ -2,6 +2,8 @@ const router = require('express').Router()
 const Albums = require('../../models/albums')
 const Reviews = require('../../models/reviews')
 const setLocals = require('../../helpers/setLocals')
+const handleFlash = require('../../helpers/handleFlash')
+
 
 router.get('/sign-out', (req, res) => {
   req.session = null
@@ -29,6 +31,7 @@ router.use('/', (req, res, next) => {
 })
 
 router.get('/', (req, res) => {
+  const flash = handleFlash(req.session)
   Promise.all([
     Reviews.getReviewsWithLimit(req.session.user),
     Albums.getAlbums(),
@@ -38,7 +41,7 @@ router.get('/', (req, res) => {
       albums: contents[1],
     }))
     .then(({reviews, albums}) => {
-      res.render('index', {reviews, albums})
+      res.render('index', {reviews, albums, flash})
     })
     .catch((error) => {
       res.status(500).render('error', {error})
