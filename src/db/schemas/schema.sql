@@ -1,15 +1,24 @@
 DROP TABLE IF EXISTS albums;
 CREATE TABLE albums (
-  id SERIAL,
+  id SERIAL PRIMARY KEY,
   title VARCHAR(255) NOT NULL,
   artist VARCHAR(255) NOT NULL
 );
 
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
-  id SERIAL,
+  id SERIAL PRIMARY KEY,
   email VARCHAR(255) NOT NULL UNIQUE,
   name VARCHAR(255),
   password VARCHAR(255),
   date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+DROP TABLE IF EXISTS reviews;
+CREATE TABlE reviews (
+  id SERIAL,
+  user_id INTEGER REFERENCES users(id),
+  album_id INTEGER REFERENCES albums(id),
+  review_content VARCHAR(65535),
+  date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)

@@ -14,7 +14,7 @@
     "db:create": "createdb vinyl",
     "db:drop": "dropdb vinyl",
     "db:schema": "psql -d vinyl < src/db/schemas/schema.sql",
-    "db:seed": "psql -d vinyl < src/db/schemas/albums.sql && psql -d vinyl < src/db/schemas/users.sql",
+    "db:seed": "psql -d vinyl < src/db/schemas/albums.sql && psql -d vinyl < src/db/schemas/users.sql && psql -d vinyl < src/db/schemas/reviews.sql",
     "test": "node tests/tests.js"
   },
   "license": "MIT",
