@@ -24,6 +24,7 @@ module.exports = (res, next, values) => {
         password: ''
       },
     title: '',
+    flash: ''
   }
 
   next()

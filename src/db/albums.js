@@ -1,4 +1,4 @@
-const {_query} = require('./helpers')
+const {_query} = require('../helpers/query')
 
 function getAlbums() {
   return _query('SELECT * FROM albums', [], 'any')

@@ -1,5 +1,7 @@
 <% include ../partials/header.ejs %>
 
-<h1>Welcome <%= user.first_name %> <%= user.last_name%></h1>
+<h1>Welcome <%= user.name %></h1>
+<h5>Email: <%= user.email %></h5>
+<h5>Date Joined: <%= user.date_created%></h5>
 
 <% include ../partials/footer.ejs %>

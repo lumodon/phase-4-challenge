@@ -1,4 +1,4 @@
-const client = require('./pgp')
+const client = require('../db/pgp')
 
 // PHASE-4-DEVELOPMENT NOTE:
 // Got this formatting from https://github.com/Microsoft/vscode/issues/3842

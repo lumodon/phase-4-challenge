@@ -1,9 +1,12 @@
 const router = require('express').Router()
 const Users = require('../../models/users')
+const handleFlash = require('../../helpers/handleFlash')
+const validateInput = require('../../helpers/validateInput')
 
 router.route('/sign-in')
   .get((req, res) => {
-    res.render('sign_in')
+    const flash = handleFlash(req.session)
+    res.render('sign_in', {flash})
   })
   .post((req, res) => {
     Users.verifyPasswordWithEmail(req.body.email, req.body.password)
@@ -12,7 +15,8 @@ router.route('/sign-in')
           req.session.user = user.id
           res.redirect(`users/${user.id}`)
         } else {
-          res.redirect('/sign-in') // TODO: add error message explaining why
+          req.session.flash = 'Invalid information.'
+          res.redirect('/sign-in')
         }
       })
       .catch((error) => {
@@ -22,16 +26,27 @@ router.route('/sign-in')
 
 router.route('/sign-up')
   .get((req, res) => {
-    res.render('sign_up')
+    const flash = handleFlash(req.session)
+    res.render('sign_up', {flash})
   })
   .post((req, res) => {
-    Users.createUser(req.body.email, req.body.firstName, req.body.lastName, req.body.password)
-      .then((user) => {
-        res.render('profile', {user})
-      })
-      .catch((error) => {
-        res.status(500).render('error', {error})
-      })
+    if (!validateInput(req.body, req.session)) {
+      res.redirect('/sign-up')
+    } else {
+      Users.createUser(req.body.email, req.body.name, req.body.password)
+        .then((user) => {
+          req.session.user = user.id
+          res.redirect(`users/${user.id}`)
+        })
+        .catch((error) => {
+          if (error.code === '23505') {
+            req.session.flash = 'Email already taken'
+            res.redirect('/sign-up')
+          } else {
+            res.status(500).render('error', {error})
+          }
+        })
+    }
   })
 
 module.exports = router
