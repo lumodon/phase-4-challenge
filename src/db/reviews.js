@@ -1,25 +1,34 @@
 const {_query} = require('../helpers/query')
 
-function getReviews() {
+const LIST_OPTIONS = `
+  reviews.id AS review_id,
+  review_content,
+  reviews.date_created AS review_date,
+  users.id AS user_id,
+  users.date_created AS user_date,
+  users.name AS user_name,
+  users.email AS user_email,
+  albums.id AS album_id,
+  albums.title AS album_title,
+  albums.artist AS album_artist
+`
+
+function getReviewsWithLimit(limit) {
   return _query(`
-    SELECT * FROM reviews
-    ORDER BY date_created DESC
-  `, [], 'any')
+    SELECT ${LIST_OPTIONS}
+    FROM reviews
+    JOIN albums
+      ON albums.id = reviews.album_id
+    JOIN users
+      ON users.id = reviews.user_id
+    ORDER BY reviews.date_created DESC
+    ${limit > 0 ? 'LIMIT $1' : ''}
+  `, [limit], 'any')
 }
 
 function getAllByUserID(userID) {
   return _query(`
-    SELECT
-      reviews.id AS review_id,
-      users.id AS user_id,
-      albums.id AS album_id,
-      review_content,
-      reviews.date_created AS review_date,
-      users.date_created AS user_date,
-      albums.title AS album_title,
-      albums.artist AS album_artist,
-      users.name AS user_name,
-      users.email AS user_email
+    SELECT ${LIST_OPTIONS}
     FROM reviews
     JOIN albums
       ON albums.id = reviews.album_id
@@ -34,23 +43,14 @@ function getAllByUserID(userID) {
 
 function getAllByAlbumID(albumID) {
   return _query(`
-  SELECT
-    reviews.id AS review_id,
-    users.id AS user_id,
-    albums.id AS album_id,
-    review_content,
-    reviews.date_created AS review_date,
-    users.date_created AS user_date,
-    albums.title AS album_title,
-    albums.artist AS album_artist,
-    users.name AS user_name,
-    users.email AS user_email
+  SELECT ${LIST_OPTIONS}
   FROM reviews
   JOIN users
     ON users.id = reviews.user_id
   JOIN albums
     ON albums.id = reviews.album_id
   WHERE album_id = $1
+  ORDER BY reviews.date_created DESC
 `, [albumID], 'any')
 }
 
@@ -73,7 +73,7 @@ function deleteReviewByID(reviewID) {
 }
 
 module.exports = {
-  getReviews,
+  getReviewsWithLimit,
   getAllByUserID,
   getAllByAlbumID,
   createReview,

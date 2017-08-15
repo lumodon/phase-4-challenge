@@ -5,13 +5,6 @@
 <h5>Date Joined: <%= user.date_created%></h5>
 
 <h3>Reviews:</h3>
-<% if (locals.reviews) { %>
-  <% locals.reviews.forEach( review => { %>
-    <p><%=review.review_album_title%></p>
-    <p><%=review.review_date%></p>
-    <p><%=review.review_content%></p>
-    <button onclick="deleteReview(<%=review.review_id%>)"><i class="fa fa-trash" aria-hidden="true"></i></button>
-  <% }) %>
-<% } %>
+<% include ../partials/reviews_list.ejs %>
 
 <% include ../partials/footer.ejs %>

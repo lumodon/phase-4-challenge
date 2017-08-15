@@ -7,3 +7,7 @@ html, body {
 .warning {
   color: red;
 }
+
+.review {
+  margin-bottom: 20px;
+}
