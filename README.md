@@ -19,8 +19,10 @@ A quick configuration had been made to get setup. Follow these instructions:
 
 #### Problems
 If you experience a problem with postgresql like I did try running this:
-`sudo mkdir /var/pgsql_socket/`
-`sudo ln -s /private/tmp/.s.PGSQL.5432 /var/pgsql_socket/`
+```
+sudo mkdir /var/pgsql_socket/
+sudo ln -s /private/tmp/.s.PGSQL.5432 /var/pgsql_socket/
+```
 Recommendation is only one that worked for me. Came from here:
 https://stackoverflow.com/questions/13410686/postgres-could-not-connect-to-server
 
@@ -30,7 +32,6 @@ psql: could not connect to server: No such file or directory Is the server runni
 ```
 
 You should be up and running.
-// TODO: Insert heroku instructions before production
 
 ### Setting Up Your Database
 
