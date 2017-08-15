@@ -30,7 +30,7 @@ router.use('/', (req, res, next) => {
 
 router.get('/', (req, res) => {
   Promise.all([
-    Reviews.getReviewsWithLimit(),
+    Reviews.getReviewsWithLimit(req.session.user),
     Albums.getAlbums(),
   ])
     .then(contents => ({

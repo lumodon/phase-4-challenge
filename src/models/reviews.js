@@ -1,32 +1,10 @@
 const Reviews = require('../db/reviews')
 const {REVIEWS_LIMIT} = require('../config/constants')
+const populateReviewList = require('../helpers/populateReviewList')
 
-function getReviewsWithLimit() {
+function getReviewsWithLimit(viewingUser) {
   return Reviews.getReviewsWithLimit(REVIEWS_LIMIT)
-    .then((content) => {
-      const reviewContainer = {list: [], reviews_are_deletable: false}
-      if (content) {
-        // Loop through all the Review contents and Album contents
-        content.forEach((contentValue) => {
-          if (contentValue.review_id) {
-            reviewContainer.list.push({
-              review_content: contentValue.review_content,
-              review_date: contentValue.review_date,
-              review_id: contentValue.review_id,
-              review_album_title: contentValue.album_title,
-              review_album_id: contentValue.album_id,
-              review_album_artist: contentValue.album_artist,
-              review_album_date: contentValue.album_date,
-              review_user_name: contentValue.user_name,
-              review_user_id: contentValue.user_id,
-            })
-          }
-        })
-
-        return reviewContainer
-      }
-      return {reviews: null}
-    })
+    .then(content => populateReviewList(content, viewingUser))
 }
 
 // TODO: Needs better name but can't think of anything
@@ -35,7 +13,7 @@ function getReviewsWithLimit() {
 // AKA GetUserInfo - and while were at it - get reviews.
 
 // Very unflexible but minimizes database calls which are slowest chokepoint in an app
-function getAllByUserID(userID) {
+function getAllByUserID(userID, viewingUser) {
   return Reviews.getAllByUserID(userID)
     .then((content) => {
       const userReviewAlbumContainer = {reviews: {list: [], reviews_are_deletable: true}}
@@ -53,7 +31,7 @@ function getAllByUserID(userID) {
         // Loop through all the Review contents and Album contents
         content.forEach((contentValue) => {
           if (contentValue.review_id) {
-            userReviewAlbumContainer.reviews.list.push({
+            const debugTheThing = {
               review_content: contentValue.review_content,
               review_date: contentValue.review_date,
               review_id: contentValue.review_id,
@@ -61,7 +39,9 @@ function getAllByUserID(userID) {
               review_album_id: contentValue.album_id,
               review_album_artist: contentValue.album_artist,
               review_album_date: contentValue.album_date,
-            })
+              review_is_deletable: viewingUser === contentValue.user_id,
+            }
+            userReviewAlbumContainer.reviews.list.push(debugTheThing)
           }
         })
 
@@ -71,8 +51,9 @@ function getAllByUserID(userID) {
     })
 }
 
-function getAllByAlbumID(albumID) {
+function getAllByAlbumID(albumID, viewingUser) {
   return Reviews.getAllByAlbumID(albumID)
+    .then(content => populateReviewList(content, viewingUser))
 }
 
 function createReview(userID, albumID, reviewContent) {
