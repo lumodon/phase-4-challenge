@@ -4,4 +4,7 @@
 <h5>Email: <%= user.email %></h5>
 <h5>Date Joined: <%= user.date_created%></h5>
 
+<h3>Reviews:</h3>
+<% include ../partials/reviews_list.ejs %>
+
 <% include ../partials/footer.ejs %>

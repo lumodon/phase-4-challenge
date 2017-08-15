@@ -1,0 +1,14 @@
+<% if (locals.reviews && locals.reviews.list) { %>
+  <% locals.reviews.list.forEach( review => { %>
+    <div class="review">
+      <p><%=review.review_album_title%></p>
+      <p><%=review.review_date%></p>
+      <p><%=review.review_content%></p>
+      <% if (locals.reviews.reviews_are_deletable) { %>
+        <button onclick="deleteReview(<%=review.review_id%>)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+      <% } else { %>
+        <a href="<%=`/users/${review.review_user_id}`%>">By: <%=review.review_user_name%></a>
+      <% } %>
+    </div>
+  <% }) %>
+<% } %>

@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const Albums = require('../../models/albums')
-const Users = require('../../models/users')
+const Reviews = require('../../models/reviews')
 const setLocals = require('../../helpers/setLocals')
 
 router.get('/sign-out', (req, res) => {
@@ -9,21 +9,18 @@ router.get('/sign-out', (req, res) => {
 })
 
 router.use('/', (req, res, next) => {
-  if(req.session.user) {
+  if (req.session.user) {
     console.log('req.session.user -> ', req.session.user)
-    Users.getUserByID(req.session.user)
-      .then((user) => {
-        setLocals(res, next, {
-          navbutton1: {
-            text: 'Profile',
-            link: `/users/${req.session.user}`
-          },
-          navbutton2: {
-            text: 'Sign Out',
-            link: '/sign-out'
-          }
-        })
-      })
+    setLocals(res, next, {
+      navbutton1: {
+        text: 'Profile',
+        link: `/users/${req.session.user}`,
+      },
+      navbutton2: {
+        text: 'Sign Out',
+        link: '/sign-out',
+      },
+    })
   } else {
     setLocals(res, next)
     // Should I set the default here
@@ -32,9 +29,16 @@ router.use('/', (req, res, next) => {
 })
 
 router.get('/', (req, res) => {
-  Albums.getAlbums()
-    .then((albums) => {
-      res.render('index', {albums})
+  Promise.all([
+    Reviews.getReviewsWithLimit(),
+    Albums.getAlbums(),
+  ])
+    .then(contents => ({
+      reviews: contents[0],
+      albums: contents[1],
+    }))
+    .then(({reviews, albums}) => {
+      res.render('index', {reviews, albums})
     })
     .catch((error) => {
       res.status(500).render('error', {error})
