@@ -46,13 +46,14 @@ function getAllByAlbumID(albumID) {
   SELECT ${LIST_OPTIONS}
   FROM reviews
   JOIN users
-    ON users.id = reviews.user_id
-  JOIN albums
-    ON albums.id = reviews.album_id
-  WHERE album_id = $1
+  ON users.id = reviews.user_id
+  RIGHT JOIN albums
+  ON albums.id = reviews.album_id
+  WHERE albums.id = $1
   ORDER BY reviews.date_created DESC
-`, [albumID], 'any')
+  `, [albumID], 'any')
 }
+// getAllByAlbumID should return Albums EVEN IF there are no reviews for that Album
 
 function createReview(userID, albumID, reviewContent) {
   return _query(`

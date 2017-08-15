@@ -12,11 +12,11 @@ const client = require('../db/pgp')
  * @returns {Promise} A standard promise.
  */
 function _query(sql, variables, method) {
-  console.log('QUERY ->', sql.replace(/[\n\s]+/g, ' '), variables) // eslint-disable-line no-console
+  console.log('\nQUERY ->', sql.replace(/[\n\s]+/g, ' '), '\n\nVariables: ', variables, '\n') // eslint-disable-line no-console
 
   return client[method](sql, variables)
     .catch((error) => {
-      console.log(`QUERY -> !!ERROR!!\n\nSQL -> ${sql}\nState -> ${variables}`) // eslint-disable-line no-console
+      console.log(`\nQUERY -> !!ERROR!!\n\nSQL -> ${sql}\nState -> ${variables}\n`) // eslint-disable-line no-console
       console.error(error) // eslint-disable-line no-console
       throw error
     })

@@ -1,12 +1,14 @@
 const router = require('express').Router()
 const Albums = require('../../models/albums')
+const Reviews = require('../../models/reviews')
+
 
 router.get('/:albumID', (req, res) => {
   const albumID = req.params.albumID
 
-  Albums.getAlbumByID(albumID)
-    .then((album) => {
-      res.render('album', {album})
+  Reviews.getAllByAlbumID(albumID, req.session.user)
+    .then((reviews) => {
+      res.render('album', {reviews, album: reviews.album})
     })
     .catch((error) => {
       res.status(500).render('error', {error})
