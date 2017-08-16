@@ -3,6 +3,7 @@
 @import 'reviews.css';
 @import 'profile.css';
 @import 'forms.css';
+@import 'albums.css';
 
 * {
   margin: 0;
