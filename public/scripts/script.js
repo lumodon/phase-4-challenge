@@ -14,7 +14,7 @@ function handleDelete() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const deleteReviewButtons = Array.from(document.querySelectorAll('.deleteReview'))
+  const deleteReviewButtons = Array.from(document.querySelectorAll('.delete-review'))
   deleteReviewButtons.forEach((deleteReviewButton) => {
     deleteReviewButton.addEventListener('click', handleDelete)
   })
