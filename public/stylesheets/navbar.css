@@ -1,0 +1,35 @@
+.navbar {
+  display: grid;
+  grid-area: navbar;
+  grid-template-columns: 1rem 1fr 1fr auto 2rem auto 1rem;
+  grid-template-areas: ". navleft . button1 . button2 .";
+  border: 3px black solid;
+  padding: 0.25rem 0;
+  height: 2.3rem;
+}
+
+.nav-left {
+  grid-area: navleft;
+}
+
+.nav-button1, .nav-button2 {
+  justify-self: end;
+}
+
+.nav-button1 {
+  grid-area: button1;
+}
+
+.nav-button2 {
+  grid-area: button2;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.1em;
+}
+
+a:hover {
+  text-shadow: 2px 2px 6px grey;
+}

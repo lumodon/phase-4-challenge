@@ -1,11 +1,12 @@
 <% include ../partials/header.ejs %>
 
-  <h1><%= locals.album.title %></h1>
-  <em>by <%= locals.album.artist %></em>
-
-  <a class="btn" href="/albums/<%= locals.album.id %>/reviews/new">New Review</a>
-
-  <h2>Reviews</h2>
-  <% include ../partials/reviews_list.ejs %>
+  <div class="form-heading"><%= locals.album.title %></div>
+  <div class="album-container">
+    <h3 class="review-header album-review-header">Reviews</h3>
+    <a class="btn btn-new-review" href="/albums/<%= locals.album.id %>/reviews/new">Add review</a>
+    <div class="review-list">
+      <% include ../partials/reviews_list.ejs %>
+    </div>
+  </div>
 
 <% include ../partials/footer.ejs %>

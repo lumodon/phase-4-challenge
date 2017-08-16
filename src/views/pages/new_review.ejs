@@ -1,9 +1,9 @@
 <% include ../partials/header.ejs %>
 
-  <h1>New review for <%= locals.album.title %></h1>
-  <form action="/albums/<%= locals.album.id %>/reviews/new" method="POST">
-    <textarea name="reviewContent" cols="30" rows="10"></textarea>
-    <input type="submit" value="Submit">
+  <div class="form-heading form-heading-smaller">New review for <%= locals.album.title %></div>
+  <form class="new-review-form" action="/albums/<%= locals.album.id %>/reviews/new" method="POST">
+    <textarea class="new-review-content" name="reviewContent" cols="40" rows="15"></textarea>
+    <input class="btn btn-form-submit" type="submit" value="Submit">
   </form>
 
 <% include ../partials/footer.ejs %>

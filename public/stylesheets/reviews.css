@@ -1,0 +1,101 @@
+.new-review-content {
+  border: 2px solid black;
+}
+
+.new-review-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+    ". form ."
+    ". . submit";
+  grid-gap: 2em;
+}
+
+.new-review-content {
+  grid-area: form;
+  resize: none;
+  width: 25em;
+  font-size: 1em;
+  outline: none;
+}
+
+.form-heading.form-heading-smaller {
+  font-size: 1.75em;
+}
+
+.review-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: min-content;
+  grid-area: reviewlist;
+  grid-row-gap: 2rem;
+}
+
+.review {
+  display: grid;
+}
+
+.review:first-of-type {
+  margin-top: -2em;
+}
+
+.review a {
+  text-decoration: underline;
+}
+
+.review-other {
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "title date"
+    "content content"
+    ". author";
+}
+
+.review-self {
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+  ". trash"
+  "title date"
+  "content content";
+}
+
+
+.review-title {
+  grid-area: title;
+}
+
+.review-date {
+  grid-area: date;
+  font-style: italic;
+  font-size: 0.8em;
+  text-align: end;
+}
+
+
+
+.review-author {
+  padding-top: 2rem;
+  grid-area: author;
+  text-align: end;
+}
+
+.review-content {
+  grid-area: content;
+}
+
+.delete-review {
+  grid-area: trash;
+  font-size: 2em;
+  background-color: transparent;
+  border: none;
+  text-align: end;
+  position: relative;
+  left: 2.5rem;
+  top: 2rem;
+}
+
+@media screen and (min-width: 427px) {
+  .review:not:first-child {
+    margin-top: -2rem;
+  }
+}

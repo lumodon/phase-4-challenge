@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xml:lang="en" xmlns= "http://www.w3.org/1999/xhtml">
 <head>
-  <title>Vinyl<%= locals.title %></title>
+  <title><%= locals.title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Language" content="en">
+  <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
   <link rel="stylesheet" type="text/css" href="/stylesheets/font-awesome.min.css">
   <script type="text/javascript" src="/scripts/script.js"></script>
 </head>
   <body>
-  <% include ./navbar.ejs %>
-  <h1 class="warning"><%= locals.flash %></h1>
-  <h1 class="success"></h1>
+    <div class="container-gutter">
+      <div class="container">
+        <% include ./navbar.ejs %>
+        <h1 class="warning"><%= locals.flash %></h1>
+        <h1 class="success"></h1>
+        <div class="page">

@@ -1,24 +1,20 @@
 <% include ../partials/header.ejs %>
 
-<form action="/sign-up" method="POST">
-  <ul>
-    <li>
-      <p>Email</p>
-      <input type="email" name="email" placeholder="user@email.com">
-    </li>
-    <li>
-      <p>Name</p>
-      <input type="text" name="name" placeholder="Alex Baldwin">
-    </li>
-    <li>
-      <p>Password</p>
-      <input type="password" name="password" placeholder="********" value=<%= autofill.password %>>
-    </li>
-    <li>
-      <p></p>
-      <input type="submit">
-    </li>
-  </ul>
-</form>
+<div class="form-heading">Sign up for Vinyl</div>
+  <form class="form-signup" action="/sign-up" method="POST">
+    <div class="form-item form-user-name">
+      <span>Name</span>
+      <input type="text" name="name">
+    </div>
+    <div class="form-item form-email">
+      <span>Email</span>
+      <input type="email" name="email">
+    </div>
+    <div class="form-item form-password">
+      <span>Password</span>
+      <input type="password" name="password" value=<%= autofill.password %>>
+    </div>
+    <input class="btn btn-form-submit" type="submit"></input>
+  </form>
 
 <% include ../partials/footer.ejs %>

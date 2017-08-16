@@ -1,0 +1,73 @@
+.vinyl-image {
+  height: 250px;
+  grid-area: image;
+  background-image: url("http://lorempixel.com/640/250/technics/");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 3px black solid;
+  border-top: 0;
+  margin-bottom: 20px;
+}
+
+.homepage-content {
+  display: grid;
+  grid-area: content;
+  grid-template-columns: 20px 2fr 1fr 8fr 40px;
+  grid-template-areas:
+    ". albumlist . reviewlist .";
+}
+
+.album-list {
+  grid-area: albumlist;
+}
+
+.review-list {
+  text-align: justify;
+  grid-area: reviewlist;
+}
+
+.review-header {
+  margin-bottom: 1em;
+  font-size: 2.5em;
+  font-weight: lighter;
+}
+
+.record-list-item {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "title"
+    "artist";
+  grid-row-gap: 0.5em;
+  margin-bottom: 1.75em;
+}
+
+.record-list-item:first-of-type {
+  margin-top: 2.5em;
+}
+
+
+
+.records-album-title {
+  grid-area: title;
+  text-decoration: underline;
+}
+
+.records-album-artist {
+  grid-area: artist;
+}
+
+@media screen and (max-width: 426px) {
+  .vinyl-image {
+    height: 100px;
+  }
+
+  .homepage-content {
+    grid-template-columns: auto;
+    grid-template-areas:
+      "albumlist"
+      "reviewlist";
+    justify-items: center;
+    padding: 0 15px;
+  }
+}

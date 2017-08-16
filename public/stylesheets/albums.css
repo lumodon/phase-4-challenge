@@ -1,0 +1,22 @@
+.album-container {
+  display: grid;
+  grid-template-columns: 2fr 3fr 3fr 2fr;
+  grid-template-areas:
+    ". reviewheader newreview ."
+    ". reviewlist reviewlist .";
+}
+
+.album-review-header {
+  grid-column: 2 / span 1;
+  grid-row: 1 / 2;
+  justify-self: start;
+  margin-bottom: 1em;
+}
+
+.btn.btn-new-review {
+  grid-column: 3 / span 1;
+  grid-row: 1 / 2;
+  justify-self: end;
+  height: 2em;
+  padding: 0.25em;
+}

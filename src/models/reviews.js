@@ -1,6 +1,7 @@
 const Reviews = require('../db/reviews')
 const {REVIEWS_LIMIT} = require('../config/constants')
 const populateReviewList = require('../helpers/populateReviewList')
+const moment = require('moment')
 
 function getReviewsWithLimit(viewingUser) {
   return Reviews.getReviewsWithLimit(REVIEWS_LIMIT)
@@ -23,7 +24,7 @@ function getAllByUserID(userID, viewingUser) {
           userReviewAlbumContainer.user = {
             name: content[0].user_name,
             email: content[0].user_email,
-            date_created: content[0].user_date,
+            date_created: moment(content[0].user_date).format('MMM Mo YYYY'),
             user_id: content[0].user_id,
           }
         }
