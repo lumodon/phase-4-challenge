@@ -7,7 +7,9 @@
       <% if (review.review_is_deletable) { %>
         <button class="delete-review" data-reviewid="<%= review.review_id %>"><i class="fa fa-trash" aria-hidden="true"></i></button>
       <% } else if ( review.review_user_name ){ %>
-        <a class="review-author" href="<%=`/users/${review.review_user_id}`%>">By: <%=review.review_user_name%></a>
+        <div class="review-author">
+          <span>by </span><a href="<%=`/users/${review.review_user_id}`%>"><%=review.review_user_name%></a>
+        </div>
       <% } %>
     </div>
   <% }) %>

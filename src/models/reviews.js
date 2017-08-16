@@ -1,7 +1,6 @@
 const Reviews = require('../db/reviews')
 const {REVIEWS_LIMIT} = require('../config/constants')
 const populateReviewList = require('../helpers/populateReviewList')
-const moment = require('moment')
 
 function getReviewsWithLimit(viewingUser) {
   return Reviews.getReviewsWithLimit(REVIEWS_LIMIT)

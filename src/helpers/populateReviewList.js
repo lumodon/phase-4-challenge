@@ -1,3 +1,5 @@
+const moment = require('moment')
+
 module.exports = (dbContent, viewingUser) => {
   const reviewContainer = {list: [], reviews_are_deletable: true}
   if (dbContent) {
@@ -15,7 +17,7 @@ module.exports = (dbContent, viewingUser) => {
       if (dbContentValue.review_id) {
         reviewContainer.list.push({
           review_content: dbContentValue.review_content,
-          review_date: dbContentValue.review_date,
+          review_date: moment(dbContentValue.review_date).format('MMM Mo YYYY'),
           review_id: dbContentValue.review_id,
           review_album_title: dbContentValue.album_title,
           review_album_id: dbContentValue.album_id,
