@@ -6,7 +6,7 @@ router.get('/:userID', (req, res) => {
 
   Reviews.getAllByUserID(userID, req.session.user)
     .then(({user, reviews}) => {
-      res.render('profile', {user, reviews})
+      res.render('profile', {user, reviews, title: 'Profile Page'})
     })
     .catch((error) => {
       res.status(500).render('error', {error})

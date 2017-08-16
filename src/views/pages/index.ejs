@@ -1,11 +1,6 @@
 <% include ../partials/header.ejs %>
-
-  <h1>Vinyl</h1>
-
-  <h2>Records</h2>
-
-  <div class="container">
-
+  <div class="vinyl-image"></div>
+  <div class="homepage-content">
     <div class="album-list">
       <% albums.forEach(function(album) { %>
         <div>
@@ -20,5 +15,4 @@
       <% include ../partials/reviews_list.ejs %>
     </div>
   </div>
-
 <% include ../partials/footer.ejs %>

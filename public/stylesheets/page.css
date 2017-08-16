@@ -1,0 +1,31 @@
+.vinyl-image {
+  width: 98vw;
+  height: 250px;
+  grid-area: image;
+  background-image: url("http://lorempixel.com/640/250/technics/");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media screen and (max-width: 376px) {
+  .vinyl-image {
+    height: 100px;
+  }
+}
+
+.homepage-content {
+  display: grid;
+  grid-area: content;
+  grid-template-columns: 20px 2fr 1fr 8fr 40px;
+  grid-template-areas:
+    ". albumlist . reviewlist .";
+}
+
+.album-list {
+  grid-area: albumlist;
+}
+
+.review-list {
+  text-align: justify;
+  grid-area: reviewlist;
+}

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Vinyl<%= locals.title %></title>
+  <title><%= locals.title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
@@ -9,6 +9,9 @@
   <script type="text/javascript" src="/scripts/script.js"></script>
 </head>
   <body>
-  <% include ./navbar.ejs %>
-  <h1 class="warning"><%= locals.flash %></h1>
-  <h1 class="success"></h1>
+    <div class="container-gutter">
+      <div class="container">
+        <% include ./navbar.ejs %>
+        <h1 class="warning"><%= locals.flash %></h1>
+        <h1 class="success"></h1>
+        <div class="page">

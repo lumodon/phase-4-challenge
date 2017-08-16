@@ -6,7 +6,7 @@ const validateInput = require('../../helpers/validateInput')
 router.route('/sign-in')
   .get((req, res) => {
     const flash = handleFlash(req.session)
-    res.render('sign_in', {flash})
+    res.render('sign_in', {flash, title: 'Sign In'})
   })
   .post((req, res) => {
     Users.verifyPasswordWithEmail(req.body.email, req.body.password)
@@ -27,7 +27,7 @@ router.route('/sign-in')
 router.route('/sign-up')
   .get((req, res) => {
     const flash = handleFlash(req.session)
-    res.render('sign_up', {flash})
+    res.render('sign_up', {flash, title: 'Sign Up'})
   })
   .post((req, res) => {
     if (!validateInput(req.body, req.session)) {

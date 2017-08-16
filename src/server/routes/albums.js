@@ -17,7 +17,7 @@ router.route('/:albumID/reviews/new')
     const flash = handleFlash(req.session)
     Albums.getAlbumByID(req.params.albumID, req.session.user)
       .then((album) => {
-        res.render('new_review', {album, flash})
+        res.render('new_review', {album, flash, title: 'New Review'})
       })
   })
   .post((req, res) => {
@@ -43,7 +43,7 @@ router.get('/:albumID', (req, res) => {
 
   Reviews.getAllByAlbumID(albumID, req.session.user)
     .then((reviews) => {
-      res.render('album', {reviews, album: reviews.album, flash})
+      res.render('album', {reviews, album: reviews.album, flash, title: 'Album Page'})
     })
     .catch((error) => {
       res.status(500).render('error', {error})

@@ -2,6 +2,7 @@
 
 module.exports = (res, next, values) => {
   res.locals = {
+    title: 'Vinyl',
     navbutton1: values && values.navbutton1
       ? values.navbutton1
       : {
