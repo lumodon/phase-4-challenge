@@ -1,5 +1,6 @@
 @import 'navbar.css';
-@import 'page.css';
+@import 'homepage.css';
+@import 'reviews.css';
 
 * {
   margin: 0;
@@ -14,7 +15,14 @@
 }
 
 html, body {
-  width: 98vw;
+  width: 100vw;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  html, body {
+    width: 100vw;
+  }
 }
 
 .warning {
@@ -39,6 +47,7 @@ html, body {
   grid-template-areas:
     "navbar"
     "page";
+  overflow: auto;
 }
 
 .page {
