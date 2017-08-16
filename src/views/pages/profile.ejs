@@ -1,10 +1,17 @@
 <% include ../partials/header.ejs %>
-
-<h1><%= user.name %></h1>
-<h5>Email: <%= user.email %></h5>
-<h5>Date Joined: <%= user.date_created%></h5>
-
-<h3>Reviews:</h3>
-<% include ../partials/reviews_list.ejs %>
+<div class="profile-layout">
+  <div class="profile-picture"></div>
+  <div class="profile-info-box">
+    <div class="profile-name"><%= user.name %></div>
+    <div class="profile-email-label">Email </div>
+    <div class="profile-email"><%= user.email %></div>
+    <div class="profile-date-label">Date Joined </div>
+    <div class="profile-date"><%= user.date_created%></div>
+  </div>
+  <div class="review-list">
+    <h3 class="review-header">Reviews</h3>
+    <% include ../partials/reviews_list.ejs %>
+  </div>
+</div>
 
 <% include ../partials/footer.ejs %>
