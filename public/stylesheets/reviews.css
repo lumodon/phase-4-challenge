@@ -1,11 +1,16 @@
 .review-list {
   display: grid;
   grid-template-columns: 1fr;
+  grid-auto-rows: min-content;
+  grid-row-gap: 2rem;
 }
 
 .review {
   display: grid;
-  margin-bottom: 3.5em;
+}
+
+.review:first-of-type {
+  margin-top: -2em;
 }
 
 .review a {
@@ -28,6 +33,7 @@
   "content content";
 }
 
+
 .review-title {
   grid-area: title;
 }
@@ -38,6 +44,8 @@
   font-size: 0.8em;
   text-align: end;
 }
+
+
 
 .review-author {
   padding-top: 2rem;
@@ -51,48 +59,17 @@
 
 .delete-review {
   grid-area: trash;
-  font-size: 1.5em;
+  font-size: 2em;
   background-color: transparent;
   border: none;
   text-align: end;
+  position: relative;
+  left: 2.5rem;
+  top: 2rem;
 }
 
 @media screen and (min-width: 427px) {
   .review:not:first-child {
-    margin-top: -2em;
-  }
-
-  .delete-review {
-    position: relative;
-    left: 2.5em;
-    top: 2em;
-    font-size: 2em;
-  }
-}
-
-@media screen and (max-width: 426px) {
-  .review-other {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "title"
-      "date"
-      "content"
-      "author";
-  }
-
-  .review-self {
-    grid-template-columns: 2fr 1fr;
-    grid-template-areas:
-    "title trash"
-    "date date"
-    "content content";
-  }
-
-  .review-author {
-    padding-top: 0.5em;
-  }
-
-  .review-list {
-    margin-top: 2.5em;
+    margin-top: -2rem;
   }
 }

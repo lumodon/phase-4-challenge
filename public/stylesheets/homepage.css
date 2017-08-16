@@ -31,6 +31,31 @@
   font-weight: lighter;
 }
 
+.record-list-item {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "title"
+    "artist";
+  grid-row-gap: 0.5em;
+  margin-bottom: 1.75em;
+}
+
+.record-list-item:first-of-type {
+  margin-top: 2.5em;
+}
+
+
+
+.records-album-title {
+  grid-area: title;
+  text-decoration: underline;
+}
+
+.records-album-artist {
+  grid-area: artist;
+}
+
 @media screen and (max-width: 426px) {
   .vinyl-image {
     height: 100px;
