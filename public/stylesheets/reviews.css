@@ -1,3 +1,28 @@
+.new-review-content {
+  border: 2px solid black;
+}
+
+.new-review-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+    ". form ."
+    ". . submit";
+  grid-gap: 2em;
+}
+
+.new-review-content {
+  grid-area: form;
+  resize: none;
+  width: 25em;
+  font-size: 1em;
+  outline: none;
+}
+
+.form-heading.form-heading-smaller {
+  font-size: 1.75em;
+}
+
 .review-list {
   display: grid;
   grid-template-columns: 1fr;
