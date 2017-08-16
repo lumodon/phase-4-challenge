@@ -26,6 +26,12 @@
   grid-area: reviewlist;
 }
 
+.review-header {
+  font-size: 2.5em;
+  font-weight: lighter;
+  margin-bottom: 0.5em;
+}
+
 @media screen and (max-width: 426px) {
   .vinyl-image {
     height: 100px;

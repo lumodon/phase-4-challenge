@@ -17,7 +17,7 @@
 }
 
 .review-self {
-  grid-template-columns: 2fr 2fr 1fr;
+  grid-template-columns: 5fr 5fr 1fr;
   grid-template-areas:
   "title date trash"
   "content content .";
@@ -48,6 +48,8 @@
 
 .review-date {
   grid-area: date;
+  font-style: italic;
+  font-size: 0.8em;
 }
 
 .review-author {
@@ -61,4 +63,7 @@
 
 .delete-review {
   grid-area: delete-review;
+  font-size: 2em;
+  background-color: transparent;
+  border: none;
 }
