@@ -6,9 +6,10 @@ function handleDelete() {
     })
       .then(response => response.text())
       .then((responseCode) => {
-        document.querySelector('.success').innerHTML = `Success! ${responseCode}`
+        // document.querySelector('.success').innerHTML = `Success! ${responseCode}`
         const reviewToDelete = document.querySelector(`div[data-reviewid="${deleteReviewButton.dataset.reviewid}"`)
         reviewToDelete.parentElement.removeChild(reviewToDelete)
+        window.location.reload() // So we can load other reviews in
       })
   }
 }
