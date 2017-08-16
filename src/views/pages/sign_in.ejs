@@ -1,19 +1,16 @@
 <% include ../partials/header.ejs %>
 
-<form action="/sign-in" method="POST">
-  <ul>
-    <li>
-      <p>Email</p>
-      <input type="email" name="email" placeholder="user@email.com" value=<%= autofill.email %>>
-    </li>
-    <li>
-      <p>Password</p>
-      <input type="password" name="password" placeholder="********" value=<%= autofill.password %>>
-    </li>
-    <li>
-      <input type="submit">
-    </li>
-  </ul>
+<div class="form-heading">Sign In</div>
+<form class="form-signup" action="/sign-in" method="POST">
+  <div class="form-item form-email">
+    <span>Email</span>
+    <input type="email" name="email" value=<%= autofill.email %>>
+  </div>
+  <div class="form-item form-password">
+    <span>Password</span>
+    <input type="password" name="password" value=<%= autofill.password %>>
+  </div>
+  <input class="btn btn-form-submit" type="submit"></input>
 </form>
 
 <% include ../partials/footer.ejs %>
