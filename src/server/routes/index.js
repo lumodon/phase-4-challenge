@@ -40,7 +40,7 @@ router.get('/', (req, res) => {
       albums: contents[1],
     }))
     .then(({reviews, albums}) => {
-      res.render('index', {reviews, albums, flash, title: 'Home Page'})
+      res.render('homepage', {reviews, albums, flash, title: 'Home Page'})
     })
     .catch((error) => {
       res.status(500).render('error', {error})

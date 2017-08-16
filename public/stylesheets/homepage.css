@@ -26,7 +26,7 @@
   grid-area: reviewlist;
 }
 
-@media screen and (max-width: 376px) {
+@media screen and (max-width: 426px) {
   .vinyl-image {
     height: 100px;
   }

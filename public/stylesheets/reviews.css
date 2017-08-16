@@ -1,0 +1,64 @@
+.review-list {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.review {
+  display: grid;
+  margin-bottom: 3.5rem;
+}
+
+.review-other {
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "title date"
+    "content content"
+    ". author";
+}
+
+.review-self {
+  grid-template-columns: 2fr 2fr 1fr;
+  grid-template-areas:
+  "title date trash"
+  "content content .";
+}
+
+@media screen and (max-width: 426px) {
+  .review-other {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "title"
+      "date"
+      "content"
+      "author";
+  }
+
+  .review-self {
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+    "title trash"
+    "date date"
+    "content content";
+  }
+}
+
+.review-title {
+  grid-area: title;
+}
+
+.review-date {
+  grid-area: date;
+}
+
+.review-author {
+  padding-top: 2rem;
+  grid-area: author;
+}
+
+.review-content {
+  grid-area: content;
+}
+
+.delete-review {
+  grid-area: delete-review;
+}
