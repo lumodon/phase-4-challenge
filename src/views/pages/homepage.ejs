@@ -2,10 +2,11 @@
   <div class="vinyl-image"></div>
   <div class="homepage-content">
     <div class="album-list">
+      <h3 class="review-header">Records</h3>
       <% albums.forEach(function(album) { %>
         <div>
-          <h5><a href="/albums/<%= album.id %>"><%= album.title %></a></h5>
-          <span><%= album.artist %></span>
+          <a class="records-album-title" href="/albums/<%= album.id %>"><%= album.title %></a>
+          <span class="records-album-artist"><%= album.artist %></span>
         </div>
       <% }) %>
     </div>
