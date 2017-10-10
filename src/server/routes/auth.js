@@ -13,7 +13,11 @@ router.route('/sign-in')
       .then((user) => {
         if (user) {
           req.session.user = user.id
-          res.redirect(`users/${user.id}`)
+          if(req.session.urlAttempted) {
+            res.redirect(req.session.urlAttempted)
+          } else {
+            res.redirect(`users/${user.id}`)
+          }
         } else {
           req.session.flash = 'Invalid information.'
           res.redirect('/sign-in')

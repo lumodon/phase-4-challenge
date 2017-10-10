@@ -7,8 +7,9 @@ function isLoggedIn(req, res, next) {
   if (req.session.user >= 0) {
     next()
   } else {
+    req.session.urlAttempted = (req.originalUrl)
     req.session.flash = 'You must be logged in to do that.'
-    res.redirect('back')
+    res.redirect('/sign-in')
   }
 }
 
