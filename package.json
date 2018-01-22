@@ -15,7 +15,8 @@
     "db:drop": "dropdb vinyl",
     "db:schema": "psql -d vinyl < src/db/schemas/schema.sql",
     "db:seed": "psql -d vinyl < src/db/schemas/albums.sql && psql -d vinyl < src/db/schemas/users.sql && psql -d vinyl < src/db/schemas/reviews.sql",
-    "test": "node tests/tests.js"
+    "test": "node tests/tests.js",
+    "heroku-postbuild": "npm run db:create && npm run db:schema && npm run db:seed"
   },
   "license": "MIT",
   "dependencies": {
