@@ -16,7 +16,7 @@ function getUserByEmail(email) {
 function createUser(email, name, password) {
   return bcrypt.hash(password, 10)
     .then(encryptedPassword =>
-      Users.createUser(email, name, encryptedPassword),
+      Users.createUser(email, name, encryptedPassword)
     )
 }
 
