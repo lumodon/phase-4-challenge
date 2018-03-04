@@ -3,20 +3,19 @@
 // http://eslint.org/docs/rules/no-param-reassign
 
 module.exports = (input, flashContainer) => {
-  let validated = true
   // PHASE-4-DEVELOPMENT NOTE:
   // Got this regex from http://regexlib.com/REDetails.aspx?regexp_id=26
   if (!input.email || !/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(input.email)) { // eslint-disable-line no-useless-escape
     // linting: But it's not a useless escape.
     // In regex dots represent "any character" whats going on?
     flashContainer.flash = 'Error: Email must match standard format. Example: somewhere.something@webdomain.com\n'
-    validated = false
+    return false
   }
   if (!input.name || input.name.length <= 0) {
     flashContainer.flash = `${flashContainer.flash}Error: Name must be filled out with something\n`
-    validated = false
+    return false
   }
-  return validated
+  return true
 }
 
 // TODO: Fix formatting of this helper function. It's not very helpful right now.
